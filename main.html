@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta property="og:title" content="Tux Docs">
+    <meta property="og:description" content="All Tux#4129 commands and features listed in one place to help you unlock the full potential of the bot!">
+    <meta property="og:image" content="https://media.discordapp.net/attachments/1213837998366396508/1275599997424898159/Tux1.png?ex=66c67a92&is=66c52912&hm=992330999afdb3e9c48108fdfdfaad4b696c6042cc3bf807d3ddc3e95cd44de8&=&format=webp&quality=lossless&width=522&height=522">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#000000">
+    <title>Tux Docs</title>
+    <link rel="icon" href="Tux.ico" type="image/x-icon">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #e0e0e0;
+            background-color: #000000;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .title-nav {
+            background: rgba(30, 30, 30, 0.9);
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 98%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            backdrop-filter: blur(3px);
+        }
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        .logo {
+            height: 40px;
+            margin-right: 15px;
+        }
+        .title-nav h1 {
+            margin: 0;
+            font-size: 22px;
+            color: #ffffff;
+        }
+        .icon-links {
+            display: flex;
+            align-items: center;
+        }
+        .icon-links img {
+            height: 25px;
+            margin-right: 15px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .icon-links img:hover {
+            transform: scale(1.1);
+        }
+        .search input {
+            padding: 8px;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            background: rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+        }
+        .left-nav {
+            width: 250px;
+            background: rgba(44, 44, 44, 0.8);
+            padding: 20px;
+            position: fixed;
+            top: 60px;
+            bottom: 0;
+            left: 0;
+            overflow-y: auto;
+            box-shadow: 2px 0 6px rgba(0, 0, 0, 0.3);
+            z-index: 999;
+            backdrop-filter: blur(3px);
+        }
+        .left-nav h2 {
+            color: #e0e0e0;
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+        .left-nav ul {
+            list-style: none;
+            padding: 0;
+        }
+        .left-nav ul li {
+            margin: 10px 0;
+        }
+        .left-nav ul li a {
+            color: #b0b0b0;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+        .left-nav ul li a:hover {
+            color: #ffffff;
+        }
+        .content {
+            margin-left: 295px;
+            margin-right: 3px;
+            padding: 20px;
+            margin-top: 75px;
+            flex: 1;
+            background: rgba(31, 31, 31, 0.8);
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(3px);
+        }
+        .content h2 {
+            font-size: 20px;
+            border-bottom: 2px solid #444;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+        .content table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        .content table, .content th, .content td {
+            border: 1px solid #444;
+        }
+        .content th, .content td {
+            padding: 10px;
+            text-align: left;
+        }
+        .content th {
+            background-color: #333;
+            color: #ffffff;
+        }
+        .content tr:nth-child(even) {
+            background-color: #222;
+        }
+        .content tr:hover {
+            background-color: #555;
+        }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .left-nav {
+                width: 100%;
+                position: static;
+                padding: 10px;
+                box-shadow: none;
+                background: rgba(44, 44, 44, 0.9);
+            }
+            .left-nav ul li {
+                margin: 8px 0;
+            }
+            .content {
+                margin-left: 0;
+                margin-right: 0;
+            }
+            .title-nav h1 {
+                font-size: 18px;
+            }
+            .icon-links img {
+                height: 20px;
+                margin-right: 10px;
+            }
+            .search input {
+                font-size: 12px;
+            }
+        }
+        @media (max-width: 480px) {
+            .title-nav {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .title-nav h1 {
+                font-size: 16px;
+            }
+            .icon-links {
+                margin-top: 10px;
+            }
+            .icon-links img {
+                height: 18px;
+                margin-right: 8px;
+            }
+            .search input {
+                font-size: 10px;
+            }
+            .left-nav {
+                width: 100%;
+                position: static;
+                padding: 5px;
+            }
+            .left-nav h2 {
+                font-size: 16px;
+            }
+            .content {
+                padding: 10px;
+            }
+            .content h2 {
+                font-size: 18px;
+            }
+            .content table {
+                font-size: 14px;
+            }
+            .content th, .content td {
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="title-nav">
+        <div class="logo-container">
+            <img src="Tux.png" alt="Logo" class="logo">
+            <h1>Tux Bot Documentation</h1>
+        </div>
+        <div class="icon-links">
+            <a href="https://discord.com/invite/A2rQsnQMvy" target="_blank">
+                <img src="discowd.png" alt="Discord">
+            </a>
+            <a href="https://github.com/akeanti" target="_blank">
+                <img src="gitwob.png" alt="GitHub">
+            </a>
+            <div class="search">
+                <input type="text" placeholder="Search...">
+            </div>
+        </div>
+    </div>
+    <div class="left-nav">
+        <h2>Categories</h2>
+        <ul>
+            <li><a href="#commands">Commands</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#moderation">Moderation Commands</a></li>
+            <li><a href="#linux">Linux-Themed Commands</a></li>
+            <li><a href="#additional">Additional Commands</a></li>
+        </ul>
+    </div>
+    <div class="content">
+        <section id="commands">
+            <h2>Commands</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Command</th>
+                        <th>Description</th>
+                        <th>Usage</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>/avatar</td>
+                        <td>Displays the avatar of a specified member or the command user if no member is specified.</td>
+                        <td>/avatar [member]</td>
+                    </tr>
+                    <tr>
+                        <td>/serverinfo</td>
+                        <td>Displays information about the server, including server ID, owner, locale, member count, and creation date.</td>
+                        <td>/serverinfo</td>
+                    </tr>
+                    <tr>
+                        <td>/userinfo</td>
+                        <td>Displays information about a specified member or the command user if no member is specified.</td>
+                        <td>/userinfo [member]</td>
+                    </tr>
+                    <tr>
+                        <td>/choose</td>
+                        <td>Randomly selects one of two or three given choices.</td>
+                        <td>/choose <choice1> <choice2> [choice3]</td>
+                    </tr>
+                    <tr>
+                        <td>/weather</td>
+                        <td>Provides current weather information for a specified city using the OpenWeather API.</td>
+                        <td>/weather <city></td>
+                    </tr>
+                    <tr>
+                        <td>/serverstats</td>
+                        <td>Displays statistics about the server, such as online members, bot count, text and voice channels, roles, and boosts.</td>
+                        <td>/serverstats</td>
+                    </tr>
+                    <tr>
+                        <td>/start_giveaway</td>
+                        <td>Starts a giveaway with a specified prize, duration (in seconds), and number of winners. Participants enter by reacting with 🎉.</td>
+                        <td>/start_giveaway <prize> <duration> <winners></td>
+                    </tr>
+                    <tr>
+                        <td>/reroll_giveaway</td>
+                        <td>Rerolls the winners of an ended giveaway. Requires the message ID of the giveaway.</td>
+                        <td>/reroll_giveaway <message_id></td>
+                    </tr>
+                    <tr>
+                        <td>/ticket</td>
+                        <td>Creates a ticket panel in the current channel where users can click a button to create a support ticket.</td>
+                        <td>/ticket</td>
+                    </tr>
+                    <tr>
+                        <td>/close</td>
+                        <td>Closes an open ticket for the command user. Deletes the ticket channel and logs the closure.</td>
+                        <td>/close</td>
+                    </tr>
+                    <tr>
+                        <td>/setpanel</td>
+                        <td>Sets the channel where the ticket panel will be sent. Only administrators can use this command.</td>
+                        <td>/setpanel <channel></td>
+                    </tr>
+                    <tr>
+                        <td>/setroles</td>
+                        <td>Sets the roles that are allowed to access tickets. Only administrators can use this command.</td>
+                        <td>/setroles <roles></td>
+                    </tr>
+                    <tr>
+                        <td>/ticket-help</td>
+                        <td>Displays a help message with all ticket-related commands.</td>
+                        <td>/ticket-help</td>
+                    </tr>
+                    <tr>
+                        <td>/ls-tickets</td>
+                        <td>Lists all open tickets in the server.</td>
+                        <td>/ls-tickets</td>
+                    </tr>
+                    <tr>
+                        <td>/rm-ticket</td>
+                        <td>Removes a specific ticket by name.</td>
+                        <td>/rm-ticket <ticket_name></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section id="features">
+            <h2>Features</h2>
+            <!-- Add features section content here -->
+        </section>
+        <section id="moderation">
+            <h2>Moderation Commands</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Command</th>
+                        <th>Description</th>
+                        <th>Usage</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>/ban</td>
+                        <td>Bans a member from the server.</td>
+                        <td>/ban <member> [reason]</td>
+                    </tr>
+                    <tr>
+                        <td>/kick</td>
+                        <td>Kicks a member from the server.</td>
+                        <td>/kick <member> [reason]</td>
+                    </tr>
+                    <tr>
+                        <td>/mute</td>
+                        <td>Mutes a member in the server.</td>
+                        <td>/mute <member> [duration]</td>
+                    </tr>
+                    <tr>
+                        <td>/warn</td>
+                        <td>Warns a member.</td>
+                        <td>/warn <member> <reason></td>
+                    </tr>
+                    <tr>
+                        <td>/lock</td>
+                        <td>Locks a channel to restrict access.</td>
+                        <td>/lock <channel></td>
+                    </tr>
+                    <tr>
+                        <td>/unlock</td>
+                        <td>Unlocks a channel to allow access.</td>
+                        <td>/unlock <channel></td>
+                    </tr>
+                    <tr>
+                        <td>/createmute</td>
+                        <td>Creates a mute role with specified permissions.</td>
+                        <td>/createmute <role_name></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section id="linux">
+            <h2>Linux-Themed Commands</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Command</th>
+                        <th>Description</th>
+                        <th>Usage</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>/neofetch</td>
+                        <td>Displays system information in a Linux 'neofetch' style.</td>
+                        <td>/neofetch</td>
+                    </tr>
+                    <tr>
+                        <td>/uptime</td>
+                        <td>Displays the bot's uptime.</td>
+                        <td>/uptime</td>
+                    </tr>
+                    <tr>
+                        <td>/fortune</td>
+                        <td>Shows a random fortune.</td>
+                        <td>/fortune</td>
+                    </tr>
+                    <tr>
+                        <td>/cowthink</td>
+                        <td>Displays ASCII art of a cow with a thought bubble.</td>
+                        <td>/cowthink <text></td>
+                    </tr>
+                    <tr>
+                        <td>/df</td>
+                        <td>Displays disk space usage.</td>
+                        <td>/df</td>
+                    </tr>
+                    <tr>
+                        <td>/top</td>
+                        <td>Displays top processes.</td>
+                        <td>/top</td>
+                    </tr>
+                    <tr>
+                        <td>/man</td>
+                        <td>Displays manual pages for commands.</td>
+                        <td>/man <command></td>
+                    </tr>
+                    <tr>
+                        <td>/linux</td>
+                        <td>Displays general Linux information.</td>
+                        <td>/linux</td>
+                    </tr>
+                    <tr>
+                        <td>/ls</td>
+                        <td>Lists files and directories.</td>
+                        <td>/ls</td>
+                    </tr>
+                    <tr>
+                        <td>/whoami</td>
+                        <td>Displays current user information.</td>
+                        <td>/whoami</td>
+                    </tr>
+                    <tr>
+                        <td>/chmod</td>
+                        <td>Changes file permissions.</td>
+                        <td>/chmod <permissions> <file></td>
+                    </tr>
+                    <tr>
+                        <td>/grep</td>
+                        <td>Searches for text in files.</td>
+                        <td>/grep <text> <file></td>
+                    </tr>
+                    <tr>
+                        <td>/ping</td>
+                        <td>Checks the bot's latency.</td>
+                        <td>/ping</td>
+                    </tr>
+                    <tr>
+                        <td>/ps</td>
+                        <td>Displays current processes.</td>
+                        <td>/ps</td>
+                    </tr>
+                    <tr>
+                        <td>/kill</td>
+                        <td>Kills a process.</td>
+                        <td>/kill <pid></td>
+                    </tr>
+                    <tr>
+                        <td>/card</td>
+                        <td>Displays a user card.</td>
+                        <td>/card <user></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section id="additional">
+            <h2>Additional Commands</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Command</th>
+                        <th>Description</th>
+                        <th>Usage</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>/profile</td>
+                        <td>Shows the user's profile card.</td>
+                        <td>/profile</td>
+                    </tr>
+                    <tr>
+                        <td>/invite</td>
+                        <td>Provides an invite link for the bot.</td>
+                        <td>/invite</td>
+                    </tr>
+                    <tr>
+                        <td>/sauce</td>
+                        <td>Finds the source of an image.</td>
+                        <td>/sauce <image_url></td>
+                    </tr>
+                    <tr>
+                        <td>/see_logo</td>
+                        <td>Displays the bot's logo.</td>
+                        <td>/see_logo</td>
+                    </tr>
+                    <tr>
+                        <td>/meme</td>
+                        <td>Generates a random meme.</td>
+                        <td>/meme</td>
+                    </tr>
+                    <tr>
+                        <td>/remind</td>
+                        <td>Sets a reminder for a specified time.</td>
+                        <td>/remind <time> <message></td>
+                    </tr>
+                    <tr>
+                        <td>/afk</td>
+                        <td>Sets the user as AFK.</td>
+                        <td>/afk <message></td>
+                    </tr>
+                    <tr>
+                        <td>/user-profile</td>
+                        <td>Displays a user's profile information.</td>
+                        <td>/user-profile <user></td>
+                    </tr>
+                    <tr>
+                        <td>/cards</td>
+                        <td>Shows the user's collected cards.</td>
+                        <td>/cards</td>
+                    </tr>
+                    <tr>
+                        <td>/exchange</td>
+                        <td>Exchanges cards with another user.</td>
+                        <td>/exchange <user> <card></td>
+                    </tr>
+                    <tr>
+                        <td>/gift</td>
+                        <td>Gifts a card to another user.</td>
+                        <td>/gift <user> <card></td>
+                    </tr>
+                    <tr>
+                        <td>/steal</td>
+                        <td>Attempts to steal a card from another user.</td>
+                        <td>/steal <user> <card></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
+</body>
+</html>
